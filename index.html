@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meril Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        .blue-header {
+            background-color: #5da4e5;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .blue-header select,
+        .blue-header input[type="text"],
+        .blue-header button {
+            margin-left: 10px;
+            font-size: 12px;
+        }
+
+        .blue-header select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .blue-header input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 180px;
+        }
+
+        .blue-header button {
+            background-color: #ffc107;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .white-header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 16px;
+            margin: 0;
+            color: black;
+        }
+
+        .logo-text span {
+            font-size: 10px;
+            color: gray;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #5da4e5;
+        }
+
+        nav .current-page {
+            color: #5da4e5;
+            font-weight: bold;
+        }
+
+        .image-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .image-card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .dropdown-section {
+            padding: 15px;
+            background-color: #e7f1fb;
+            border: 1px solid #ccc;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .dropdown-section select {
+            padding: 10px;
+            font-size: 14px;
+            border: 2px solid #5da4e5;
+            border-radius: 5px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            width: 250px;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .export-buttons button {
+            background-color: #5da4e5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .export-buttons button:hover {
+            background-color: #0073e6;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #5da4e5;
+            padding: 10px 0;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            background-color: #5da4e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            margin-right: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tabs button.active,
+        .tabs button:hover {
+            background-color: white;
+            color: #5da4e5;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #5da4e5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Blue Header -->
+<div class="blue-header">
+    <select>
+        <option>SELECT LANGUAGE</option>
+        <option>English</option>
+        <option>French</option>
+        <option>Spanish</option>
+    </select>
+    <input type="text" placeholder="Search Here">
+    <button>🔍</button>
+</div>
+
+<!-- White Header -->
+<header class="white-header">
+    <div class="logo">
+        <img src="https://www.merillife.com/assets/images/home/new/meril_logo_new.png" alt="Meril Logo">
+        <div class="logo-text">
+            <h1>Meril</h1>
+            <span>More to Life</span>
+        </div>
+    </div>
+    <nav>
+        <a href="https://www.merillife.com/about-us" target="_blank">About Us</a>
+        <a href="https://www.merillife.com/healthcare-professionals" target="_blank">Our Stakeholders</a>
+        <a href="https://www.merillife.com/medical-devices/orthopedic-implants" target="_blank">Products</a>
+        <a href="https://www.merillife.com/meril-academy" target="_blank">Meril Academy</a>
+        <a href="https://www.merillife.com/blog" target="_blank">Blogs</a>
+        <a href="https://merillife.zohorecruit.in/jobs/merilcareer?/about-us/careers)" target="_blank">Careers</a>
+        <a href="https://ifu.merillife.com/" target="_blank">e-IFU</a>
+        <span class="current-page">Our Presence</span>
+        <a href="https://www.merillife.com/contact-us" target="_blank">Contact Us</a>
+    </nav>
+</header>
+
+<!-- Image Section -->
+<div class="image-section">
+    <div class="image-card">
+        <img src="https://www.merillife.com/assets/images/usp/if3PcZ6wKjukhOrYWy2d.jpg" alt="Global Presence">
+        <h3>Global Presence</h3>
+    </div>
+    <div class="image-card">
+        <img src="https://www.merillife.com/assets/images/usp/dsB4W6FZ3JuMG1Obl05j.jpg" alt="Clinically Relevant">
+        <h3>Clinically Relevant</h3>
+    </div>
+    <div class="image-card">
+        <img src="https://www.merillife.com/assets/images/usp/4NO1aY8hvr3sIUW9pwbi.jpg" alt="State of the Art Medical Devices">
+        <h3>State of the Art Medical Devices</h3>
+    </div>
+    <div class="image-card">
+        <img src="https://www.merillife.com/assets/images/usp/qMCInDSOyxuXW73Pilbk.jpg" alt="Meril Academy">
+        <h3>Meril Academy</h3>
+    </div>
+    <div class="image-card">
+        <img src="https://www.merillife.com/assets/images/usp/wR71M3FnQJaIimzNj2cL.jpg" alt="World Class Manufacturing Facility">
+        <h3>World Class Manufacturing Facility</h3>
+    </div>
+    <div class="image-card">
+        <img src="https://www.merillife.com/assets/images/usp/P1yHpJlK7cturFnbQ5XT.jpg" alt="Diversified Manpower">
+        <h3>Diversified Manpower</h3>
+    </div>
+</div>
+
+<!-- Dropdown Section -->
+<div class="dropdown-section">
+    <select id="company-select">
+        <option value="mixed">Select Company</option>
+        <option value="healthcare">Meril Healthcare</option>
+        <option value="endo">Meril Endo-surgery</option>
+        <option value="life-sciences">Meril Life Sciences</option>
+    </select>
+    <select id="product-select">
+        <option>Select Product</option>
+    </select>
+    <select id="country-select">
+        <option>Select Country</option>
+        <option>USA</option>
+        <option>Germany</option>
+        <option>India</option>
+        <option>Canada</option>
+        <option>Japan</option>
+    </select>
+    <div class="export-buttons">
+        <button onclick="alert('Excel export functionality coming soon!')">Export to Excel</button>
+        <button onclick="alert('Word export functionality coming soon!')">Export to Word</button>
+    </div>
+</div>
+
+<!-- Tabs Section -->
+<div class="tabs">
+    <button class="tab-button active" data-tab="table">Table</button>
+    <button class="tab-button" data-tab="graph">Graph</button>
+    <button class="tab-button" data-tab="map">Map</button>
+</div>
+
+<!-- Tab Contents -->
+<div class="tab-content active" id="table">
+    <h2>Product Registration Status</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Product</th>
+                <th>Registration Status</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+</div>
+<div class="tab-content" id="graph">
+    <h2>Graph Content</h2>
+    <p>Graph visualization will go here.</p>
+</div>
+<div class="tab-content" id="map">
+    <h2>Map Content</h2>
+    <p>Map visualization will go here.</p>
+</div>
+
+<script>
+    const products = {
+        mixed: [
+            "Destiknee™ Total Knee System",
+            "Opulent™ Total Knee System",
+            "Freedom® Total Knee System",
+            "Mitsu AB",
+            "Biomine",
+            "Circular Stapler",
+            "Endocutter",
+            "Hybrid Endocutter",
+            "Nautica",
+            "myosist"
+        ],
+        healthcare: [
+            "Destiknee™ Total Knee System",
+            "Opulent™ Total Knee System",
+            "Freedom® Total Knee System",
+        ],
+        endo: [
+            "Mitsu AB",
+            "Circular Stapler",
+            "Endocutter",
+            "Hybrid Endocutter"
+        ],
+        "life-sciences": [
+            "Biomine",
+            "Nautica",
+            "myosist"
+        ],
+    };
+
+    const countries = ["USA", "Germany", "India", "Canada", "Japan"];
+    const companySelect = document.getElementById("company-select");
+    const productSelect = document.getElementById("product-select");
+    const countrySelect = document.getElementById("country-select");
+    const tableBody = document.getElementById("table-body");
+
+    function updateTable(data) {
+        tableBody.innerHTML = data
+            .map(
+                ({ country, product, status }) =>
+                    `<tr><td>${country}</td><td>${product}</td><td>${status}</td></tr>`
+            )
+            .join("");
+    }
+
+    function populateDropdown(select, items) {
+        select.innerHTML = `<option>Select Product</option>`;
+        items.forEach((item) => {
+            const option = document.createElement("option");
+            option.value = item;
+            option.textContent = item;
+            select.appendChild(option);
+        });
+    }
+
+    function generateData(products, filterCountry) {
+        const data = [];
+        products.forEach((product) => {
+            countries.forEach((country) => {
+                if (!filterCountry || filterCountry === country) {
+                    data.push({
+                        country,
+                        product,
+                        status: Math.random() > 0.5 ? "Reg." : "Not Reg.",
+                    });
+                }
+            });
+        });
+        return data;
+    }
+
+    companySelect.addEventListener("change", () => {
+        const selectedCompany = companySelect.value;
+        const availableProducts = products[selectedCompany] || products.mixed;
+        populateDropdown(productSelect, availableProducts);
+        updateTable(generateData(availableProducts));
+    });
+
+    productSelect.addEventListener("change", () => {
+        const selectedProduct = productSelect.value;
+        if (selectedProduct !== "Select Product") {
+            updateTable(generateData([selectedProduct]));
+        }
+    });
+
+    countrySelect.addEventListener("change", () => {
+        const selectedCountry = countrySelect.value;
+        const selectedCompany = companySelect.value;
+        const availableProducts = products[selectedCompany] || products.mixed;
+        updateTable(generateData(availableProducts, selectedCountry));
+    });
+
+    document.querySelectorAll(".tab-button").forEach((button) =>
+        button.addEventListener("click", () => {
+            document
+                .querySelectorAll(".tab-button")
+                .forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            const tabId = button.dataset.tab;
+            document
+                .querySelectorAll(".tab-content")
+                .forEach((tab) => tab.classList.remove("active"));
+            document.getElementById(tabId).classList.add("active");
+        })
+    );
+
+    // Initial Setup
+    populateDropdown(productSelect, products.mixed);
+    updateTable(generateData(products.mixed));
+</script>
+
+</body>
+</html>
