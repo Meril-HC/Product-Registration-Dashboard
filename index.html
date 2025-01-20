@@ -67,17 +67,6 @@
             margin-right: 10px;
         }
 
-        .logo-text h1 {
-            font-size: 16px;
-            margin: 0;
-            color: black;
-        }
-
-        .logo-text span {
-            font-size: 10px;
-            color: gray;
-        }
-
         nav {
             display: flex;
             gap: 20px;
@@ -149,27 +138,6 @@
             width: 250px;
         }
 
-        .export-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .export-buttons button {
-            background-color: #5da4e5;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .export-buttons button:hover {
-            background-color: #0073e6;
-        }
-
         .tabs {
             display: flex;
             justify-content: center;
@@ -213,19 +181,47 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            background-color: #e8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
             margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         table th,
         table td {
-            padding: 10px;
+            padding: 10px 15px;
             text-align: left;
             border: 1px solid #ddd;
         }
 
         table th {
-            background-color: #5da4e5;
+            background-color: #2db9c3;
             color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        table td {
+            font-size: 13px;
+            color: #333;
+        }
+
+        table tbody tr:hover {
+            background-color: #cceef1;
+        }
+
+        .flag {
+            width: 20px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 2px;
+            display: inline-block;
+            background-size: cover;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -247,8 +243,6 @@
 <header class="white-header">
     <div class="logo">
         <img src="https://www.merillife.com/assets/images/home/new/meril_logo_new.png" alt="Meril Logo">
-        <div class="logo-text">
-        </div>
     </div>
     <nav>
         <a href="https://www.merillife.com/about-us" target="_blank">About Us</a>
@@ -291,8 +285,15 @@
     </div>
 </div>
 
+<!-- Tabs Section -->
+<div class="tabs">
+    <button class="tab-button active" data-tab="table">Table</button>
+    <button class="tab-button" data-tab="graph">Graph</button>
+    <button class="tab-button" data-tab="map">Map</button>
+</div>
+
 <!-- Dropdown Section -->
-<div class="dropdown-section">
+<div id="dropdown-section" class="dropdown-section">
     <select id="company-select">
         <option value="mixed">Select Company</option>
         <option value="healthcare">Meril Healthcare</option>
@@ -304,23 +305,12 @@
     </select>
     <select id="country-select">
         <option>Select Country</option>
-        <option>USA</option>
-        <option>Germany</option>
-        <option>India</option>
-        <option>Canada</option>
-        <option>Japan</option>
+        <option value="USA">USA</option>
+        <option value="Germany">Germany</option>
+        <option value="India">India</option>
+        <option value="Canada">Canada</option>
+        <option value="Japan">Japan</option>
     </select>
-    <div class="export-buttons">
-        <button onclick="alert('Excel export functionality coming soon!')">Export to Excel</button>
-        <button onclick="alert('Word export functionality coming soon!')">Export to Word</button>
-    </div>
-</div>
-
-<!-- Tabs Section -->
-<div class="tabs">
-    <button class="tab-button active" data-tab="table">Table</button>
-    <button class="tab-button" data-tab="graph">Graph</button>
-    <button class="tab-button" data-tab="map">Map</button>
 </div>
 
 <!-- Tab Contents -->
@@ -329,6 +319,7 @@
     <table>
         <thead>
             <tr>
+                <th>Sr.no.</th>
                 <th>Country</th>
                 <th>Product</th>
                 <th>Registration Status</th>
@@ -354,11 +345,6 @@
             "Freedom® Total Knee System",
             "Mitsu AB",
             "Biomine",
-            "Circular Stapler",
-            "Endocutter",
-            "Hybrid Endocutter",
-            "Nautica",
-            "myosist"
         ],
         healthcare: [
             "Destiknee™ Total Knee System",
@@ -368,14 +354,8 @@
         endo: [
             "Mitsu AB",
             "Circular Stapler",
-            "Endocutter",
-            "Hybrid Endocutter"
         ],
-        "life-sciences": [
-            "Biomine",
-            "Nautica",
-            "myosist"
-        ],
+        "life-sciences": ["Biomine"],
     };
 
     const countries = ["USA", "Germany", "India", "Canada", "Japan"];
@@ -383,14 +363,38 @@
     const productSelect = document.getElementById("product-select");
     const countrySelect = document.getElementById("country-select");
     const tableBody = document.getElementById("table-body");
+    const dropdownSection = document.getElementById("dropdown-section");
 
     function updateTable(data) {
         tableBody.innerHTML = data
             .map(
-                ({ country, product, status }) =>
-                    `<tr><td>${country}</td><td>${product}</td><td>${status}</td></tr>`
+                ({ country, product, status }, index) =>
+                    `<tr>
+                        <td>${index + 1}</td>
+                        <td>
+                            <div style="display: flex; align-items: center;">
+                                <div class="flag" style="background-image: url('https://flagcdn.com/w40/${getCountryCode(
+                                    country
+                                )}.png'); background-size: cover;"></div>
+                                <span>${country}</span>
+                            </div>
+                        </td>
+                        <td>${product}</td>
+                        <td>${status}</td>
+                    </tr>`
             )
             .join("");
+    }
+
+    function getCountryCode(country) {
+        const countryCodes = {
+            USA: "us",
+            Germany: "de",
+            India: "in",
+            Canada: "ca",
+            Japan: "jp",
+        };
+        return countryCodes[country] || "xx";
     }
 
     function populateDropdown(select, items) {
@@ -403,11 +407,14 @@
         });
     }
 
-    function generateData(products, filterCountry) {
+    function generateData(products, selectedCountry, selectedProduct) {
         const data = [];
         products.forEach((product) => {
             countries.forEach((country) => {
-                if (!filterCountry || filterCountry === country) {
+                if (
+                    (!selectedCountry || selectedCountry === country) &&
+                    (!selectedProduct || selectedProduct === product)
+                ) {
                     data.push({
                         country,
                         product,
@@ -419,26 +426,26 @@
         return data;
     }
 
+    function filterTable() {
+        const selectedCompany = companySelect.value;
+        const selectedProduct = productSelect.value === "Select Product" ? null : productSelect.value;
+        const selectedCountry = countrySelect.value === "Select Country" ? null : countrySelect.value;
+
+        const availableProducts = products[selectedCompany] || products.mixed;
+        const filteredData = generateData(availableProducts, selectedCountry, selectedProduct);
+
+        updateTable(filteredData);
+    }
+
     companySelect.addEventListener("change", () => {
         const selectedCompany = companySelect.value;
         const availableProducts = products[selectedCompany] || products.mixed;
         populateDropdown(productSelect, availableProducts);
-        updateTable(generateData(availableProducts));
+        filterTable();
     });
 
-    productSelect.addEventListener("change", () => {
-        const selectedProduct = productSelect.value;
-        if (selectedProduct !== "Select Product") {
-            updateTable(generateData([selectedProduct]));
-        }
-    });
-
-    countrySelect.addEventListener("change", () => {
-        const selectedCountry = countrySelect.value;
-        const selectedCompany = companySelect.value;
-        const availableProducts = products[selectedCompany] || products.mixed;
-        updateTable(generateData(availableProducts, selectedCountry));
-    });
+    productSelect.addEventListener("change", filterTable);
+    countrySelect.addEventListener("change", filterTable);
 
     document.querySelectorAll(".tab-button").forEach((button) =>
         button.addEventListener("click", () => {
@@ -452,6 +459,13 @@
                 .querySelectorAll(".tab-content")
                 .forEach((tab) => tab.classList.remove("active"));
             document.getElementById(tabId).classList.add("active");
+
+            // Show dropdowns only on Table tab
+            if (tabId === "table") {
+                dropdownSection.classList.remove("hidden");
+            } else {
+                dropdownSection.classList.add("hidden");
+            }
         })
     );
 
