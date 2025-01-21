@@ -897,6 +897,20 @@ chart.seriesContainer.set("background", am5.Rectangle.new(root, {
     dy: 5
   }));
 
+ // Add grid lines (latitude and longitude)
+  var graticuleSeries = chart.series.unshift(
+    am5map.GraticuleSeries.new(root, {
+      step: 10
+    })
+  );
+
+  // Set grid lines to cream color
+  graticuleSeries.mapLines.template.setAll({
+    stroke: am5.color(0xfff5e1), // Cream color for grid lines
+    strokeOpacity: 3, // Fully opaque grid lines
+    strokeWidth: 3 // Thin grid lines
+  });
+
   // Country-specific product registration data
   var countryData = {
    AD: { name: "Andorra", registered: 15, underRegistration: 5, flag: "https://flagcdn.com/w40/ad.png" },
