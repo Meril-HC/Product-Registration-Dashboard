@@ -834,7 +834,7 @@ function startAutoRotation() {
     autoRotate = chart.animate({
         key: "rotationX",
         to: chart.get("rotationX") + 360, // Continue rotation from current position
-        duration: 30000, // 30 seconds for a full rotation
+        duration: 10000, // 30 seconds for a full rotation
         loops: Infinity, // Infinite loops
         easing: am5.ease.linear // Smooth, constant speed
     });
