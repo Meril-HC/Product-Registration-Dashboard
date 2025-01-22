@@ -897,19 +897,35 @@ chart.seriesContainer.set("background", am5.Rectangle.new(root, {
     dy: 5
   }));
 
- // Add grid lines (latitude and longitude)
-  var graticuleSeries = chart.series.unshift(
-    am5map.GraticuleSeries.new(root, {
-      step: 10
-    })
-  );
+ // Add horizontal grid lines (latitude lines)
+var horizontalGraticuleSeries = chart.series.unshift(
+  am5map.GraticuleSeries.new(root, {
+    stepLatitude: 10, // Step for latitude lines
+    stepLongitude: 360, // No vertical lines in this series
+  })
+);
 
-  // Set grid lines to cream color
-  graticuleSeries.mapLines.template.setAll({
-    stroke: am5.color(0xfff5e1), // Cream color for grid lines
-    strokeOpacity: 3, // Fully opaque grid lines
-    strokeWidth: 3 // Thin grid lines
-  });
+// Style for horizontal lines
+horizontalGraticuleSeries.mapLines.template.setAll({
+  stroke: am5.color(0x000000), // Black color for horizontal lines
+  strokeOpacity: 1, // Fully opaque
+  strokeWidth: 1.5, // Slightly thicker lines
+});
+
+// Add vertical grid lines (longitude lines)
+var verticalGraticuleSeries = chart.series.unshift(
+  am5map.GraticuleSeries.new(root, {
+    stepLatitude: 360, // No horizontal lines in this series
+    stepLongitude: 10, // Step for longitude lines
+  })
+);
+
+// Style for vertical lines
+verticalGraticuleSeries.mapLines.template.setAll({
+  stroke: am5.color(0xEAE2C6), // Beige color for vertical lines
+  strokeOpacity: 600, // Slightly transparent
+  strokeWidth: 9, // Thin lines
+});
 
   // Country-specific product registration data
   var countryData = {
