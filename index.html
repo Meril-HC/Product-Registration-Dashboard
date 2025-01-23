@@ -8,6 +8,7 @@
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <style>
@@ -262,6 +263,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
+        #piechartdiv {
+            width: 100%;
+            height: 500px;
+        }
+
       #globe-container {
            width: 100%;
            height: 500px;
@@ -435,6 +441,27 @@
     </div>
     <!-- Chart container -->
     <div id="chartdiv"></div>
+    <div class="container">
+  <h1>Graph Content</h1>
+  <div class="dropdown-section">
+    <select id="continent">
+      <option value="all">Select Continent</option>
+      <option value="Europe">Europe</option>
+      <option value="Africa">Africa</option>
+      <option value="North America">North America</option>
+      <option value="Asia">Asia</option>
+      <option value="Australia">Australia</option>
+      <option value="South America">South America</option>
+    </select>
+    <select id="company">
+      <option value="all">Select Company</option>
+      <option value="Meril Healthcare">Meril Healthcare</option>
+      <option value="Meril Life-Science">Meril Life-Science</option>
+      <option value="Meril Endo-Surgery">Meril Endo-Surgery</option>
+    </select>
+  </div>
+</div>
+<div id="piechartdiv"></div> <!-- Changed ID here -->
 </div>
 <div class="tab-content" id="map">
     <h2>Map Content</h2>
@@ -804,6 +831,198 @@
         });
     </script>
     
+    <script>
+am5.ready(function () {
+  // Create root
+  var root = am5.Root.new("piechartdiv");
+  root.setThemes([am5themes_Animated.new(root)]);
+
+  var container = root.container.children.push(
+    am5.Container.new(root, {
+      width: am5.p100,
+      height: am5.p100,
+      layout: root.horizontalLayout,
+    })
+  );
+
+  // First Pie Chart: Continents or Countries
+  var chart = container.children.push(
+    am5percent.PieChart.new(root, {
+      tooltip: am5.Tooltip.new(root, {}),
+    })
+  );
+
+  var series = chart.series.push(
+    am5percent.PieSeries.new(root, {
+      valueField: "value",
+      categoryField: "category",
+    })
+  );
+
+  series.labels.template.setAll({
+    textType: "circular",
+    radius: 4,
+  });
+  series.slices.template.set("toggleKey", "none");
+
+  // Second Pie Chart: Companies
+  var subChart = container.children.push(
+    am5percent.PieChart.new(root, {
+      radius: am5.percent(50),
+      tooltip: am5.Tooltip.new(root, {}),
+    })
+  );
+
+  var subSeries = subChart.series.push(
+    am5percent.PieSeries.new(root, {
+      valueField: "value",
+      categoryField: "category",
+    })
+  );
+
+  subSeries.slices.template.set("toggleKey", "none");
+
+  // Data
+  var data = {
+    all: {
+    continents: [
+      { category: "Europe", value: 15000, companies: { "Meril Healthcare": 5000, "Meril Life-Science": 5000, "Meril Endo-Surgery": 5000 } },
+      { category: "Africa", value: 12000, companies: { "Meril Healthcare": 4000, "Meril Life-Science": 4000, "Meril Endo-Surgery": 4000 } },
+      { category: "North America", value: 18000, companies: { "Meril Healthcare": 6000, "Meril Life-Science": 6000, "Meril Endo-Surgery": 6000 } },
+      { category: "Asia", value: 22000, companies: { "Meril Healthcare": 8000, "Meril Life-Science": 7000, "Meril Endo-Surgery": 6000 } },
+      { category: "Australia", value: 8000, companies: { "Meril Healthcare": 3000, "Meril Life-Science": 3000, "Meril Endo-Surgery": 2000 } },
+      { category: "South America", value: 14000, companies: { "Meril Healthcare": 5000, "Meril Life-Science": 5000, "Meril Endo-Surgery": 4000 } },
+    ],
+  },
+  Europe: [
+    { category: "Germany", value: 2000, companies: { "Meril Healthcare": 800, "Meril Life-Science": 600, "Meril Endo-Surgery": 600 } },
+    { category: "France", value: 1800, companies: { "Meril Healthcare": 700, "Meril Life-Science": 600, "Meril Endo-Surgery": 500 } },
+    { category: "Italy", value: 1500, companies: { "Meril Healthcare": 600, "Meril Life-Science": 500, "Meril Endo-Surgery": 400 } },
+    { category: "Spain", value: 1400, companies: { "Meril Healthcare": 500, "Meril Life-Science": 500, "Meril Endo-Surgery": 400 } },
+    { category: "Netherlands", value: 1200, companies: { "Meril Healthcare": 500, "Meril Life-Science": 400, "Meril Endo-Surgery": 300 } },
+    { category: "Poland", value: 1100, companies: { "Meril Healthcare": 400, "Meril Life-Science": 400, "Meril Endo-Surgery": 300 } },
+    { category: "Sweden", value: 1000, companies: { "Meril Healthcare": 400, "Meril Life-Science": 300, "Meril Endo-Surgery": 300 } },
+    { category: "Norway", value: 900, companies: { "Meril Healthcare": 350, "Meril Life-Science": 300, "Meril Endo-Surgery": 250 } },
+    { category: "Belgium", value: 850, companies: { "Meril Healthcare": 300, "Meril Life-Science": 300, "Meril Endo-Surgery": 250 } },
+    { category: "Austria", value: 800, companies: { "Meril Healthcare": 300, "Meril Life-Science": 250, "Meril Endo-Surgery": 250 } },
+    { category: "Switzerland", value: 750, companies: { "Meril Healthcare": 250, "Meril Life-Science": 250, "Meril Endo-Surgery": 250 } },
+    { category: "Portugal", value: 700, companies: { "Meril Healthcare": 250, "Meril Life-Science": 250, "Meril Endo-Surgery": 200 } },
+  ],
+  Africa: [
+    { category: "Nigeria", value: 2000, companies: { "Meril Healthcare": 700, "Meril Life-Science": 700, "Meril Endo-Surgery": 600 } },
+    { category: "South Africa", value: 1800, companies: { "Meril Healthcare": 600, "Meril Life-Science": 600, "Meril Endo-Surgery": 600 } },
+    { category: "Egypt", value: 1500, companies: { "Meril Healthcare": 500, "Meril Life-Science": 500, "Meril Endo-Surgery": 500 } },
+    { category: "Kenya", value: 1400, companies: { "Meril Healthcare": 500, "Meril Life-Science": 500, "Meril Endo-Surgery": 400 } },
+    { category: "Ethiopia", value: 1300, companies: { "Meril Healthcare": 400, "Meril Life-Science": 450, "Meril Endo-Surgery": 450 } },
+    { category: "Ghana", value: 1200, companies: { "Meril Healthcare": 400, "Meril Life-Science": 400, "Meril Endo-Surgery": 400 } },
+    { category: "Morocco", value: 1100, companies: { "Meril Healthcare": 350, "Meril Life-Science": 400, "Meril Endo-Surgery": 350 } },
+    { category: "Tanzania", value: 1000, companies: { "Meril Healthcare": 350, "Meril Life-Science": 350, "Meril Endo-Surgery": 300 } },
+    { category: "Uganda", value: 900, companies: { "Meril Healthcare": 300, "Meril Life-Science": 300, "Meril Endo-Surgery": 300 } },
+    { category: "Algeria", value: 850, companies: { "Meril Healthcare": 300, "Meril Life-Science": 300, "Meril Endo-Surgery": 250 } },
+    { category: "Sudan", value: 800, companies: { "Meril Healthcare": 250, "Meril Life-Science": 300, "Meril Endo-Surgery": 250 } },
+    { category: "Ivory Coast", value: 750, companies: { "Meril Healthcare": 250, "Meril Life-Science": 250, "Meril Endo-Surgery": 250 } },
+  ],
+  NorthAmerica: [
+    { category: "USA", value: 8000, companies: { "Meril Healthcare": 3000, "Meril Life-Science": 2500, "Meril Endo-Surgery": 2500 } },
+    { category: "Canada", value: 5000, companies: { "Meril Healthcare": 2000, "Meril Life-Science": 1500, "Meril Endo-Surgery": 1500 } },
+    { category: "Mexico", value: 5000, companies: { "Meril Healthcare": 1500, "Meril Life-Science": 1500, "Meril Endo-Surgery": 2000 } },
+  ],
+  SouthAmerica: [
+    { category: "Brazil", value: 6000, companies: { "Meril Healthcare": 2000, "Meril Life-Science": 2000, "Meril Endo-Surgery": 2000 } },
+    { category: "Argentina", value: 5000, companies: { "Meril Healthcare": 1500, "Meril Life-Science": 1500, "Meril Endo-Surgery": 2000 } },
+    { category: "Chile", value: 4000, companies: { "Meril Healthcare": 1500, "Meril Life-Science": 1500, "Meril Endo-Surgery": 1000 } },
+    { category: "Colombia", value: 3000, companies: { "Meril Healthcare": 1000, "Meril Life-Science": 1000, "Meril Endo-Surgery": 1000 } },
+  ],
+  Asia: [
+    { category: "India", value: 8000, companies: { "Meril Healthcare": 3000, "Meril Life-Science": 3000, "Meril Endo-Surgery": 2000 } },
+    { category: "China", value: 7000, companies: { "Meril Healthcare": 2500, "Meril Life-Science": 2500, "Meril Endo-Surgery": 2000 } },
+    { category: "Japan", value: 6000, companies: { "Meril Healthcare": 2000, "Meril Life-Science": 2000, "Meril Endo-Surgery": 2000 } },
+  ],
+  Australia: [
+    { category: "Australia", value: 8000, companies: { "Meril Healthcare": 3000, "Meril Life-Science": 3000, "Meril Endo-Surgery": 2000 } },
+    ],
+  };
+
+  var continentSelect = document.getElementById("continent");
+  var companySelect = document.getElementById("company");
+
+  // Function to animate the charts
+  function animateChart(chart) {
+    chart.series.each((series) => {
+      series.appear(1000, 100); // Smooth circular animation
+    });
+  }
+
+  // Function to update charts
+  function updateCharts() {
+    var selectedContinent = continentSelect.value;
+    var selectedCompany = companySelect.value;
+
+    // First Chart: Update based on the selected company
+    if (selectedCompany === "all") {
+      if (selectedContinent === "all") {
+        series.data.setAll(data.all.continents);
+      } else {
+        series.data.setAll(data[selectedContinent] || []);
+      }
+    } else {
+      if (selectedContinent === "all") {
+        // Filter continents for the selected company
+        var filteredContinents = data.all.continents.map((continent) => ({
+          category: continent.category,
+          value: continent.companies[selectedCompany] || 0,
+        }));
+        series.data.setAll(filteredContinents);
+      } else {
+        // Filter countries for the selected company
+        var filteredCountries = (data[selectedContinent] || []).map((country) => ({
+          category: country.category,
+          value: country.companies[selectedCompany] || 0,
+        }));
+        series.data.setAll(filteredCountries);
+      }
+    }
+
+    // Second Chart: Update based on the selected company
+    if (selectedCompany === "all") {
+      if (selectedContinent === "all") {
+        var globalCompanies = {};
+        data.all.continents.forEach((continent) => {
+          Object.entries(continent.companies).forEach(([company, value]) => {
+            globalCompanies[company] = (globalCompanies[company] || 0) + value;
+          });
+        });
+        subSeries.data.setAll(
+          Object.entries(globalCompanies).map(([category, value]) => ({ category, value }))
+        );
+      } else {
+        var continentCompanies = {};
+        (data[selectedContinent] || []).forEach((country) => {
+          Object.entries(country.companies).forEach(([company, value]) => {
+            continentCompanies[company] = (continentCompanies[company] || 0) + value;
+          });
+        });
+        subSeries.data.setAll(
+          Object.entries(continentCompanies).map(([category, value]) => ({ category, value }))
+        );
+      }
+    } else {
+      subSeries.data.setAll([{ category: selectedCompany, value: 100 }]);
+    }
+
+    // Trigger animations
+    animateChart(chart);
+    animateChart(subChart);
+  }
+
+  continentSelect.addEventListener("change", updateCharts);
+  companySelect.addEventListener("change", updateCharts);
+
+  // Initial setup
+  series.data.setAll(data.all.continents);
+  updateCharts();
+});
+</script>
     
 <script>    
 am5.ready(function() {
