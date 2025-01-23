@@ -869,20 +869,18 @@ var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
     geoJSON: am5geodata_worldLow
 }));
 
-// Set background (ocean) color to blue
-polygonSeries.mapPolygons.template.setAll({
-    fill: am5.color(0x87CEEB), // Ocean blue color (Light Blue)
-    fillOpacity: 1, // Ensure full opacity
-    stroke: am5.color(0x000000), // Optional: Border color for countries
-    strokeWidth: 1, // Optional: Border width
-    strokeOpacity: 0.8 // Optional: Border opacity
-});
+var backgroundSeries = chart.series.unshift(
+        am5map.MapPolygonSeries.new(root, {})
+      );
 
-// Change the globe background (ocean) color
-chart.seriesContainer.set("background", am5.Rectangle.new(root, {
-    fill: am5.color(0x87CEEB), // Ocean blue color
-    fillOpacity: 1 // Ensure full opacity
-}));
+      backgroundSeries.mapPolygons.template.setAll({
+        fill: am5.color(0x5d97e7), // Light blue ocean color
+        stroke: am5.color(0x5d97e7),
+      });
+
+      backgroundSeries.data.push({
+        geometry: am5map.getGeoRectangle(90, 180, -90, -180),
+      });
 
   // Add lighting effect
   chart.seriesContainer.set("background", am5.Rectangle.new(root, {
@@ -896,36 +894,6 @@ chart.seriesContainer.set("background", am5.Rectangle.new(root, {
     dx: 5,
     dy: 5
   }));
-
- // Add horizontal grid lines (latitude lines)
-var horizontalGraticuleSeries = chart.series.unshift(
-  am5map.GraticuleSeries.new(root, {
-    stepLatitude: 10, // Step for latitude lines
-    stepLongitude: 360, // No vertical lines in this series
-  })
-);
-
-// Style for horizontal lines
-horizontalGraticuleSeries.mapLines.template.setAll({
-  stroke: am5.color(0x000000), // Black color for horizontal lines
-  strokeOpacity: 1, // Fully opaque
-  strokeWidth: 1.5, // Slightly thicker lines
-});
-
-// Add vertical grid lines (longitude lines)
-var verticalGraticuleSeries = chart.series.unshift(
-  am5map.GraticuleSeries.new(root, {
-    stepLatitude: 360, // No horizontal lines in this series
-    stepLongitude: 10, // Step for longitude lines
-  })
-);
-
-// Style for vertical lines
-verticalGraticuleSeries.mapLines.template.setAll({
-  stroke: am5.color(0xEAE2C6), // Beige color for vertical lines
-  strokeOpacity: 600, // Slightly transparent
-  strokeWidth: 9, // Thin lines
-});
 
   // Country-specific product registration data
   var countryData = {
