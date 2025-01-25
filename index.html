@@ -1503,7 +1503,16 @@ function getCountryFileName(id) {
 <!-- HTML -->
 <div id="chartdiv"></div>
  <script>
+// Disable text selection
+document.addEventListener('selectstart', function (e) {
+    e.preventDefault();
+}, false);
 
+// Disable drag-and-drop of text/images
+document.addEventListener('dragstart', function (e) {
+    e.preventDefault();
+}, false);
+     
 // Disable right-click
     document.addEventListener('contextmenu', function (e) {
         e.preventDefault();
