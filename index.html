@@ -274,6 +274,29 @@
       option {
         padding: 10px;
       }
+            /* Pagination Styles */
+      #pagination-container {
+        text-align: center;
+        margin: 20px 0;
+      }
+      #pagination-container button {
+        background-color: #2db9c3;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        margin: 2px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: background-color 0.3s ease;
+      }
+      #pagination-container button:hover:not(:disabled) {
+        background-color: #228b9a;
+      }
+      #pagination-container button:disabled {
+        background-color: #ccc;
+        cursor: default;
+      }
     </style>
   </head>
   <body>
@@ -339,24 +362,212 @@
       <button class="tab-button" data-tab="graph">Graph</button>
       <button class="tab-button" data-tab="map">Map</button>
     </div>
-    <!-- Dropdown and Export Section (shown only in Table tab) -->
+    <!-- Dropdown and Export Section (visible on Table tab) -->
     <div id="dropdown-section" class="dropdown-section">
       <select id="company-select">
         <option value="mixed">Select Company</option>
-        <option value="healthcare">Meril Healthcare</option>
-        <option value="endo">Meril Endo-surgery</option>
-        <option value="life-sciences">Meril Life Sciences</option>
+        <option value="Meril Healthcare">Meril Healthcare</option>
+        <option value="Meril Endo-surgery">Meril Endo-surgery</option>
+        <option value="Meril Life Sciences">Meril Life Sciences</option>
       </select>
       <select id="product-select">
         <option>Select Product</option>
       </select>
       <select id="country-select">
         <option>Select Country</option>
-        <option value="USA">USA</option>
-        <option value="Germany">Germany</option>
-        <option value="India">India</option>
-        <option value="Canada">Canada</option>
-        <option value="Japan">Japan</option>
+        <!-- This dropdown is for filtering; you can type any country from the full list -->
+         <option value="Afghanistan">Afghanistan</option>
+  <option value="Albania">Albania</option>
+  <option value="Algeria">Algeria</option>
+  <option value="Andorra">Andorra</option>
+  <option value="Angola">Angola</option>
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Armenia">Armenia</option>
+  <option value="Australia">Australia</option>
+  <option value="Austria">Austria</option>
+  <option value="Azerbaijan">Azerbaijan</option>
+  <option value="Bahamas">Bahamas</option>
+  <option value="Bahrain">Bahrain</option>
+  <option value="Bangladesh">Bangladesh</option>
+  <option value="Barbados">Barbados</option>
+  <option value="Belarus">Belarus</option>
+  <option value="Belgium">Belgium</option>
+  <option value="Belize">Belize</option>
+  <option value="Benin">Benin</option>
+  <option value="Bhutan">Bhutan</option>
+  <option value="Bolivia">Bolivia</option>
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+  <option value="Botswana">Botswana</option>
+  <option value="Brazil">Brazil</option>
+  <option value="Brunei">Brunei</option>
+  <option value="Bulgaria">Bulgaria</option>
+  <option value="Burkina Faso">Burkina Faso</option>
+  <option value="Burundi">Burundi</option>
+  <option value="Cabo Verde">Cabo Verde</option>
+  <option value="Cambodia">Cambodia</option>
+  <option value="Cameroon">Cameroon</option>
+  <option value="Canada">Canada</option>
+  <option value="Central African Republic">Central African Republic</option>
+  <option value="Chad">Chad</option>
+  <option value="Chile">Chile</option>
+  <option value="China">China</option>
+  <option value="Colombia">Colombia</option>
+  <option value="Comoros">Comoros</option>
+  <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
+  <option value="Costa Rica">Costa Rica</option>
+  <option value="Croatia">Croatia</option>
+  <option value="Cuba">Cuba</option>
+  <option value="Cyprus">Cyprus</option>
+  <option value="Czechia">Czechia</option>
+  <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+  <option value="Denmark">Denmark</option>
+  <option value="Djibouti">Djibouti</option>
+  <option value="Dominica">Dominica</option>
+  <option value="Dominican Republic">Dominican Republic</option>
+  <option value="Ecuador">Ecuador</option>
+  <option value="Egypt">Egypt</option>
+  <option value="El Salvador">El Salvador</option>
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+  <option value="Eritrea">Eritrea</option>
+  <option value="Estonia">Estonia</option>
+  <option value="Eswatini">Eswatini</option>
+  <option value="Ethiopia">Ethiopia</option>
+  <option value="Fiji">Fiji</option>
+  <option value="Finland">Finland</option>
+  <option value="France">France</option>
+  <option value="Gabon">Gabon</option>
+  <option value="Gambia">Gambia</option>
+  <option value="Georgia">Georgia</option>
+  <option value="Germany">Germany</option>
+  <option value="Ghana">Ghana</option>
+  <option value="Greece">Greece</option>
+  <option value="Grenada">Grenada</option>
+  <option value="Guatemala">Guatemala</option>
+  <option value="Guinea">Guinea</option>
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+  <option value="Guyana">Guyana</option>
+  <option value="Haiti">Haiti</option>
+  <option value="Honduras">Honduras</option>
+  <option value="Hungary">Hungary</option>
+  <option value="Iceland">Iceland</option>
+  <option value="India">India</option>
+  <option value="Indonesia">Indonesia</option>
+  <option value="Iran">Iran</option>
+  <option value="Iraq">Iraq</option>
+  <option value="Ireland">Ireland</option>
+  <option value="Israel">Israel</option>
+  <option value="Italy">Italy</option>
+  <option value="Jamaica">Jamaica</option>
+  <option value="Japan">Japan</option>
+  <option value="Jordan">Jordan</option>
+  <option value="Kazakhstan">Kazakhstan</option>
+  <option value="Kenya">Kenya</option>
+  <option value="Kiribati">Kiribati</option>
+  <option value="Kuwait">Kuwait</option>
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+  <option value="Laos">Laos</option>
+  <option value="Latvia">Latvia</option>
+  <option value="Lebanon">Lebanon</option>
+  <option value="Lesotho">Lesotho</option>
+  <option value="Liberia">Liberia</option>
+  <option value="Libya">Libya</option>
+  <option value="Liechtenstein">Liechtenstein</option>
+  <option value="Lithuania">Lithuania</option>
+  <option value="Luxembourg">Luxembourg</option>
+  <option value="Madagascar">Madagascar</option>
+  <option value="Malawi">Malawi</option>
+  <option value="Malaysia">Malaysia</option>
+  <option value="Maldives">Maldives</option>
+  <option value="Mali">Mali</option>
+  <option value="Malta">Malta</option>
+  <option value="Marshall Islands">Marshall Islands</option>
+  <option value="Mauritania">Mauritania</option>
+  <option value="Mauritius">Mauritius</option>
+  <option value="Mexico">Mexico</option>
+  <option value="Micronesia">Micronesia</option>
+  <option value="Moldova">Moldova</option>
+  <option value="Monaco">Monaco</option>
+  <option value="Mongolia">Mongolia</option>
+  <option value="Montenegro">Montenegro</option>
+  <option value="Morocco">Morocco</option>
+  <option value="Mozambique">Mozambique</option>
+  <option value="Myanmar">Myanmar</option>
+  <option value="Namibia">Namibia</option>
+  <option value="Nauru">Nauru</option>
+  <option value="Nepal">Nepal</option>
+  <option value="Netherlands">Netherlands</option>
+  <option value="New Zealand">New Zealand</option>
+  <option value="Nicaragua">Nicaragua</option>
+  <option value="Niger">Niger</option>
+  <option value="Nigeria">Nigeria</option>
+  <option value="North Korea">North Korea</option>
+  <option value="Norway">Norway</option>
+  <option value="Oman">Oman</option>
+  <option value="Pakistan">Pakistan</option>
+  <option value="Palau">Palau</option>
+  <option value="Panama">Panama</option>
+  <option value="Papua New Guinea">Papua New Guinea</option>
+  <option value="Paraguay">Paraguay</option>
+  <option value="Peru">Peru</option>
+  <option value="Philippines">Philippines</option>
+  <option value="Poland">Poland</option>
+  <option value="Portugal">Portugal</option>
+  <option value="Qatar">Qatar</option>
+  <option value="Romania">Romania</option>
+  <option value="Russia">Russia</option>
+  <option value="Rwanda">Rwanda</option>
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+  <option value="Saint Lucia">Saint Lucia</option>
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+  <option value="Samoa">Samoa</option>
+  <option value="San Marino">San Marino</option>
+  <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+  <option value="Saudi Arabia">Saudi Arabia</option>
+  <option value="Senegal">Senegal</option>
+  <option value="Serbia">Serbia</option>
+  <option value="Seychelles">Seychelles</option>
+  <option value="Sierra Leone">Sierra Leone</option>
+  <option value="Singapore">Singapore</option>
+  <option value="Slovakia">Slovakia</option>
+  <option value="Slovenia">Slovenia</option>
+  <option value="Solomon Islands">Solomon Islands</option>
+  <option value="Somalia">Somalia</option>
+  <option value="South Africa">South Africa</option>
+  <option value="South Korea">South Korea</option>
+  <option value="South Sudan">South Sudan</option>
+  <option value="Spain">Spain</option>
+  <option value="Sri Lanka">Sri Lanka</option>
+  <option value="Sudan">Sudan</option>
+  <option value="Suriname">Suriname</option>
+  <option value="Sweden">Sweden</option>
+  <option value="Switzerland">Switzerland</option>
+  <option value="Syria">Syria</option>
+  <option value="Taiwan">Taiwan</option>
+  <option value="Tajikistan">Tajikistan</option>
+  <option value="Tanzania">Tanzania</option>
+  <option value="Thailand">Thailand</option>
+  <option value="Timor-Leste">Timor-Leste</option>
+  <option value="Togo">Togo</option>
+  <option value="Tonga">Tonga</option>
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+  <option value="Tunisia">Tunisia</option>
+  <option value="Turkey">Turkey</option>
+  <option value="Turkmenistan">Turkmenistan</option>
+  <option value="Tuvalu">Tuvalu</option>
+  <option value="Uganda">Uganda</option>
+  <option value="Ukraine">Ukraine</option>
+  <option value="United Arab Emirates">United Arab Emirates</option>
+  <option value="United Kingdom">United Kingdom</option>
+  <option value="United States of America">United States of America</option>
+  <option value="Uruguay">Uruguay</option>
+  <option value="Uzbekistan">Uzbekistan</option>
+  <option value="Vanuatu">Vanuatu</option>
+  <option value="Venezuela">Venezuela</option>
+  <option value="Vietnam">Vietnam</option>
+  <option value="Yemen">Yemen</option>
+  <option value="Zambia">Zambia</option>
+  <option value="Zimbabwe">Zimbabwe</option>
       </select>
       <div class="export-buttons">
         <button onclick="alert('Export to Excel coming soon!')">Export to Excel</button>
@@ -377,6 +588,7 @@
         </thead>
         <tbody id="table-body"></tbody>
       </table>
+      <div id="pagination-container"></div>
     </div>
     <div class="tab-content" id="graph">
       <h2>Graph Content</h2>
@@ -428,110 +640,340 @@
       <!-- Globe Visualization -->
       <div id="globe-container"></div>
     </div>
-
     <!-- Scripts -->
-    <!-- Table Functionality Script -->
     <script>
-      const products = {
-        mixed: [
-          "Destiknee™ Total Knee System",
-          "Opulent™ Total Knee System",
-          "Freedom® Total Knee System",
-          "Mitsu AB",
-          "Biomine",
-        ],
-        healthcare: [
-          "Destiknee™ Total Knee System",
-          "Opulent™ Total Knee System",
-          "Freedom® Total Knee System",
-        ],
-        endo: ["Mitsu AB", "Circular Stapler"],
-        "life-sciences": ["Biomine"],
-      };
-      const countries = ["USA", "Germany", "India", "Canada", "Japan"];
-      const companySelect = document.getElementById("company-select");
-      const productSelect = document.getElementById("product-select");
-      const countrySelect = document.getElementById("country-select");
-      const tableBody = document.getElementById("table-body");
-      const dropdownSection = document.getElementById("dropdown-section");
-      function updateTable(data) {
-        tableBody.innerHTML = data
-          .map(
-            ({ country, product, status }, index) =>
-              `<tr>
-                <td>${index + 1}</td>
-                <td>
-                  <div style="display: flex; align-items: center;">
-                    <div class="flag" style="background-image: url('https://flagcdn.com/w40/${getCountryCode(
-                      country
-                    )}.png'); background-size: cover;"></div>
-                    <span>${country}</span>
-                  </div>
-                </td>
-                <td>${product}</td>
-                <td>${status}</td>
-              </tr>`
-          )
-          .join("");
-      }
-      function getCountryCode(c) {
-        const codes = { USA: "us", Germany: "de", India: "in", Canada: "ca", Japan: "jp" };
-        return codes[c] || "xx";
-      }
-      function populateDropdown(sel, items) {
-        sel.innerHTML = `<option>Select Product</option>`;
-        items.forEach((item) => {
-          const opt = document.createElement("option");
-          opt.value = item;
-          opt.textContent = item;
-          sel.appendChild(opt);
-        });
-      }
-      function generateData(prods, selCountry, selProduct) {
-        let d = [];
-        prods.forEach((p) => {
-          countries.forEach((c) => {
-            if ((!selCountry || selCountry === c) && (!selProduct || selProduct === p)) {
-              d.push({ country: c, product: p, status: Math.random() > 0.5 ? "Reg." : "Not Reg." });
+      
+      // List of 192 countries:
+      const allCountries = [
+        "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan",
+        "Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi",
+        "Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Congo-Brazzaville)","Costa Rica","Croatia","Cuba","Cyprus","Czechia",
+        "Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic",
+        "Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia",
+        "Fiji","Finland","France",
+        "Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana",
+        "Haiti","Honduras","Hungary",
+        "Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy",
+        "Jamaica","Japan","Jordan",
+        "Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan",
+        "Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
+        "Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar",
+        "Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway",
+        "Oman",
+        "Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal",
+        "Qatar",
+        "Romania","Russia","Rwanda",
+        "Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria",
+        "Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu",
+        "Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan",
+        "Vanuatu","Venezuela","Vietnam",
+        "Yemen",
+        "Zambia","Zimbabwe"
+      ];
+      
+      // Updated product lists for each company
+      const companiesData = [
+        {
+          name: "Meril Healthcare",
+          products: [
+            "Destiknee™ Total Knee System",
+            "Opulent™ Total Knee System",
+            "Freedom® Total Knee System",
+            "Latitud™ Hip Replacement System",
+            "Libertas™ Hip Replacement System",
+            "ARTIS™/ARMAR™/DHUM™/KET™ - Non Sterile Bone Plates",
+            "MBOSS™/FIXION™/DHUM™/KET™ - Non Sterile Bone Screws",
+            "ACCURA™/CLAVO™/KET™ - Sterile & Non sterile IM Nails",
+            "Knee Instruments",
+            "Hip Instruments",
+            "Trauma Instruments",
+            "MISSO Orthopedic Robotic System",
+            "Destiknee™ Uniknee Partial Knee System",
+            "Opulent™ Uniknee Partial Knee System",
+            "Destiknee Hinge Knee System",
+            "Cementless Knee Replacement System (Using Additive techniques)",
+            "Latitud Monomod Revision Stem",
+            "Cementless Hip Replacement System (Using Additive techniques)",
+            "Arthroscopy Knee System",
+            "Arthroscopy Shoulder System",
+            "Primis Shoulder System",
+            "Reusable Arthroscopy Knee Instrumnets Set",
+            "Reusable Arthroscopy Shoulder Instrumnets Set",
+            "PRIMO – Spine System"
+          ]
+        },
+        {
+          name: "Meril Endo-surgery",
+          products: [
+            "Aspiron Polyamide",
+            "ri-CORD",
+            "Aspiron Polypropylene",
+            "Aspiron Silk",
+            "FILAMIDE",
+            "FILAMIDE VET",
+            "FILAPROP",
+            "FILAPROP P",
+            "FILAPROP VET",
+            "FILASILK",
+            "FILASILK VET",
+            "A MITSU",
+            "MITSU AB",
+            "MITSU AB VET",
+            "MITSU FST",
+            "MITSU FST VET",
+            "MITSU VET",
+            "PINION PDO",
+            "PINION PGA-PCL",
+            "MIRUS - Endoscopic Linear Cutter and Reload",
+            "Mirus - Linear Cutter and Reloads",
+            "Mirus - Powered Endocutter& Reloads"
+          ]
+        },
+        {
+          name: "Meril Life Sciences",
+          products: [
+            "Biomime",
+            "Biomime Aura",
+            "Biomime Lineage",
+            "Mabel",
+            "Metaflex",
+            "Metafor",
+            "Mural DES",
+            "Mural NC",
+            "Mural SC",
+            "Mural SEB",
+            "Prevade"
+          ]
+        }
+      ];
+      
+      // Generate the unique data set:
+      let generatedData = [];
+      companiesData.forEach(company => {
+        company.products.forEach((product, pIndex) => {
+          allCountries.forEach(country => {
+            let status;
+            if (country === "India") {
+              status = "Registered";
+            } else {
+              status = (pIndex % 2 === 0) ? "Registered" : "Not Registered";
             }
+            generatedData.push({
+              company: company.name,
+              country: country,
+              product: product,
+              status: status
+            });
           });
         });
-        return d;
+      });
+      // This results in 57 products * 192 countries = 10,944 entries.
+      const actualData = generatedData;
+      
+      /****************************************************
+       * Table Pagination & Filtering Code
+       ****************************************************/
+      let filteredData = []; // Holds the current (filtered) data set.
+      let currentPage = 1;
+      const pageSize = 25;
+      
+      // Render the table rows for the current page.
+      function renderTable() {
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const pageData = filteredData.slice(startIndex, endIndex);
+        const tableBody = document.getElementById("table-body");
+        tableBody.innerHTML = pageData
+          .map((item, index) => {
+            return `<tr>
+                      <td>${startIndex + index + 1}</td>
+                      <td>
+                        <div style="display: flex; align-items: center;">
+                          <div class="flag" style="background-image: url('https://flagcdn.com/w40/${getCountryCode(item.country)}.png');"></div>
+                          <span>${item.country}</span>
+                        </div>
+                      </td>
+                      <td>${item.product}</td>
+                      <td>${item.status}</td>
+                    </tr>`;
+          })
+          .join("");
+        renderPaginationControls();
       }
+      
+      // Create pagination controls based on filteredData length.
+      function renderPaginationControls() {
+        const container = document.getElementById("pagination-container");
+        container.innerHTML = "";
+        const totalPages = Math.ceil(filteredData.length / pageSize);
+      
+        // "First" Button.
+        const firstBtn = document.createElement("button");
+        firstBtn.textContent = "First";
+        firstBtn.onclick = () => { currentPage = 1; renderTable(); };
+        container.appendChild(firstBtn);
+      
+        // "Prev" Button.
+        const prevBtn = document.createElement("button");
+        prevBtn.textContent = "Prev";
+        prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderTable(); } };
+        container.appendChild(prevBtn);
+      
+        // Numbered page buttons (up to 10 buttons).
+        const maxButtons = 10;
+        let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+        let endPage = startPage + maxButtons - 1;
+        if (endPage > totalPages) {
+          endPage = totalPages;
+          startPage = Math.max(1, endPage - maxButtons + 1);
+        }
+        for (let i = startPage; i <= endPage; i++) {
+          const pageBtn = document.createElement("button");
+          pageBtn.textContent = i;
+          if (i === currentPage) {
+            pageBtn.style.backgroundColor = "#2db9c3";
+            pageBtn.disabled = true;
+          }
+          pageBtn.onclick = () => { currentPage = i; renderTable(); };
+          container.appendChild(pageBtn);
+        }
+      
+        // "Next" Button.
+        const nextBtn = document.createElement("button");
+        nextBtn.textContent = "Next";
+        nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderTable(); } };
+        container.appendChild(nextBtn);
+      
+        // "Last" Button.
+        const lastBtn = document.createElement("button");
+        lastBtn.textContent = "Last";
+        lastBtn.onclick = () => { currentPage = totalPages; renderTable(); };
+        container.appendChild(lastBtn);
+      }
+      
+      // Helper function: Return the two-letter country code for flag images.
+      function getCountryCode(country) {
+        const flagMapping = {
+          "Afghanistan": "af", "Albania": "al", "Algeria": "dz", "Andorra": "ad", "Angola": "ao",
+          "Antigua and Barbuda": "ag", "Argentina": "ar", "Armenia": "am", "Australia": "au", "Austria": "at", "Azerbaijan": "az",
+          "Bahamas": "bs", "Bahrain": "bh", "Bangladesh": "bd", "Barbados": "bb", "Belarus": "by", "Belgium": "be", "Belize": "bz", "Benin": "bj",
+          "Bhutan": "bt", "Bolivia": "bo", "Bosnia and Herzegovina": "ba", "Botswana": "bw", "Brazil": "br", "Brunei": "bn",
+          "Bulgaria": "bg", "Burkina Faso": "bf", "Burundi": "bi",
+          "Cabo Verde": "cv", "Cambodia": "kh", "Cameroon": "cm", "Canada": "ca", "Central African Republic": "cf", "Chad": "td",
+          "Chile": "cl", "China": "cn", "Colombia": "co", "Comoros": "km", "Congo (Congo-Brazzaville)": "cg", "Costa Rica": "cr",
+          "Croatia": "hr", "Cuba": "cu", "Cyprus": "cy", "Czechia": "cz",
+          "Democratic Republic of the Congo": "cd", "Denmark": "dk", "Djibouti": "dj", "Dominica": "dm", "Dominican Republic": "do",
+          "Ecuador": "ec", "Egypt": "eg", "El Salvador": "sv", "Equatorial Guinea": "gq", "Eritrea": "er", "Estonia": "ee", "Eswatini": "sz", "Ethiopia": "et",
+          "Fiji": "fj", "Finland": "fi", "France": "fr",
+          "Gabon": "ga", "Gambia": "gm", "Georgia": "ge", "Germany": "de", "Ghana": "gh", "Greece": "gr", "Grenada": "gd", "Guatemala": "gt", "Guinea": "gn", "Guinea-Bissau": "gw", "Guyana": "gy",
+          "Haiti": "ht", "Honduras": "hn", "Hungary": "hu",
+          "Iceland": "is", "India": "in", "Indonesia": "id", "Iran": "ir", "Iraq": "iq", "Ireland": "ie", "Israel": "il", "Italy": "it",
+          "Jamaica": "jm", "Japan": "jp", "Jordan": "jo",
+          "Kazakhstan": "kz", "Kenya": "ke", "Kiribati": "ki", "Kuwait": "kw", "Kyrgyzstan": "kg",
+          "Laos": "la", "Latvia": "lv", "Lebanon": "lb", "Lesotho": "ls", "Liberia": "lr", "Libya": "ly", "Liechtenstein": "li", "Lithuania": "lt", "Luxembourg": "lu",
+          "Madagascar": "mg", "Malawi": "mw", "Malaysia": "my", "Maldives": "mv", "Mali": "ml", "Malta": "mt", "Marshall Islands": "mh", "Mauritania": "mr", "Mauritius": "mu", "Mexico": "mx", "Micronesia": "fm", "Moldova": "md", "Monaco": "mc", "Mongolia": "mn", "Montenegro": "me", "Morocco": "ma", "Mozambique": "mz", "Myanmar": "mm",
+          "Namibia": "na", "Nauru": "nr", "Nepal": "np", "Netherlands": "nl", "New Zealand": "nz", "Nicaragua": "ni", "Niger": "ne", "Nigeria": "ng", "North Korea": "kp", "Norway": "no",
+          "Oman": "om",
+          "Pakistan": "pk", "Palau": "pw", "Panama": "pa", "Papua New Guinea": "pg", "Paraguay": "py", "Peru": "pe", "Philippines": "ph", "Poland": "pl", "Portugal": "pt",
+          "Qatar": "qa",
+          "Romania": "ro", "Russia": "ru", "Rwanda": "rw",
+          "Saint Kitts and Nevis": "kn", "Saint Lucia": "lc", "Saint Vincent and the Grenadines": "vc", "Samoa": "ws", "San Marino": "sm", "Sao Tome and Principe": "st", "Saudi Arabia": "sa", "Senegal": "sn", "Serbia": "rs", "Seychelles": "sc", "Sierra Leone": "sl", "Singapore": "sg", "Slovakia": "sk", "Slovenia": "si", "Solomon Islands": "sb", "Somalia": "so", "South Africa": "za", "South Korea": "kr", "South Sudan": "ss", "Spain": "es", "Sri Lanka": "lk", "Sudan": "sd", "Suriname": "sr", "Sweden": "se", "Switzerland": "ch", "Syria": "sy",
+          "Taiwan": "tw", "Tajikistan": "tj", "Tanzania": "tz", "Thailand": "th", "Timor-Leste": "tl", "Togo": "tg", "Tonga": "to", "Trinidad and Tobago": "tt", "Tunisia": "tn", "Turkey": "tr", "Turkmenistan": "tm", "Tuvalu": "tv",
+          "Uganda": "ug", "Ukraine": "ua", "United Arab Emirates": "ae", "United Kingdom": "gb", "United States of America": "us", "Uruguay": "uy", "Uzbekistan": "uz",
+          "Vanuatu": "vu", "Venezuela": "ve", "Vietnam": "vn",
+          "Yemen": "ye",
+          "Zambia": "zm", "Zimbabwe": "zw"
+        };
+        return flagMapping[country] || country.slice(0,2).toLowerCase();
+      }
+      
+      /****************************************************
+       * Filtering & Dropdown Population
+       ****************************************************/
       function filterTable() {
+        const companySelect = document.getElementById("company-select");
+        const productSelect = document.getElementById("product-select");
+        const countrySelect = document.getElementById("country-select");
         const selCompany = companySelect.value;
-        const selProd = productSelect.value === "Select Product" ? null : productSelect.value;
+        const selProduct = productSelect.value === "Select Product" ? null : productSelect.value;
         const selCountry = countrySelect.value === "Select Country" ? null : countrySelect.value;
-        const availProds = products[selCompany] || products.mixed;
-        const filtered = generateData(availProds, selCountry, selProd);
-        updateTable(filtered);
+      
+        filteredData = actualData.filter(item => {
+          let companyMatch = (selCompany === "mixed") ? true : (item.company === selCompany);
+          let productMatch = selProduct ? (item.product === selProduct) : true;
+          let countryMatch = selCountry ? (item.country === selCountry) : true;
+          return companyMatch && productMatch && countryMatch;
+        });
+        currentPage = 1;
+        renderTable();
       }
-      companySelect.addEventListener("change", () => {
-        const sel = companySelect.value;
-        const avail = products[sel] || products.mixed;
-        populateDropdown(productSelect, avail);
+      
+      function populateProductDropdown() {
+        const companySelect = document.getElementById("company-select");
+        const productSelect = document.getElementById("product-select");
+        const selCompany = companySelect.value;
+        let productsSet = new Set();
+        let filtered = actualData;
+        if (selCompany !== "mixed") {
+          filtered = filtered.filter(item => item.company === selCompany);
+        }
+        filtered.forEach(item => productsSet.add(item.product));
+        productSelect.innerHTML = `<option>Select Product</option>`;
+        productsSet.forEach(prod => {
+          const opt = document.createElement("option");
+          opt.value = prod;
+          opt.textContent = prod;
+          productSelect.appendChild(opt);
+        });
+      }
+      
+      document.getElementById("company-select").addEventListener("change", () => {
+        populateProductDropdown();
         filterTable();
       });
-      productSelect.addEventListener("change", filterTable);
-      countrySelect.addEventListener("change", filterTable);
-      document.querySelectorAll(".tab-button").forEach((b) =>
+      document.getElementById("product-select").addEventListener("change", filterTable);
+      document.getElementById("country-select").addEventListener("change", filterTable);
+      
+      /****************************************************
+       * Tab Switching Functionality
+       ****************************************************/
+      document.querySelectorAll(".tab-button").forEach(b =>
         b.addEventListener("click", () => {
-          document.querySelectorAll(".tab-button").forEach((btn) => btn.classList.remove("active"));
+          document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
           b.classList.add("active");
-          const t = b.dataset.tab;
-          document.querySelectorAll(".tab-content").forEach((tab) => tab.classList.remove("active"));
-          document.getElementById(t).classList.add("active");
-          if (t === "table") {
+          const tabId = b.dataset.tab;
+          document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+          document.getElementById(tabId).classList.add("active");
+          const dropdownSection = document.getElementById("dropdown-section");
+          if (tabId === "table") {
             dropdownSection.classList.remove("hidden");
           } else {
             dropdownSection.classList.add("hidden");
           }
         })
       );
-      populateDropdown(productSelect, products.mixed);
-      updateTable(generateData(products.mixed));
+      
+      // Initialize on page load:
+      populateProductDropdown();
+      filteredData = actualData;
+      renderTable();
+      
+      /****************************************************
+       * Download Button Functionality
+       * When clicked, the full JSON (10,944 entries) is downloaded.
+       ****************************************************/
+      function downloadData() {
+        const dataStr = JSON.stringify(actualData, null, 2);
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "actualData.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
     </script>
-    <!-- XY Chart Script -->
+        <!-- XY Chart Script -->
     <script>
       am5.ready(function () {
         const companyData = {
@@ -1579,12 +2021,11 @@
         chart.appear(1000, 100);
       });
     </script>
-    <!-- Disable Selection/Context Menu Script -->
     <script>
-      document.addEventListener("selectstart", (e) => e.preventDefault(), false);
-      document.addEventListener("dragstart", (e) => e.preventDefault(), false);
-      document.addEventListener("contextmenu", (e) => e.preventDefault(), false);
-      document.addEventListener("keydown", (e) => {
+      document.addEventListener("selectstart", e => e.preventDefault(), false);
+      document.addEventListener("dragstart", e => e.preventDefault(), false);
+      document.addEventListener("contextmenu", e => e.preventDefault(), false);
+      document.addEventListener("keydown", e => {
         if (
           e.key === "F12" ||
           (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
